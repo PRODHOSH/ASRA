@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/*
+ * ASRA tokens. Strict monochrome: white paper, true black, a grey ramp for
+ * text, and near-black panels for the dark sections. Emphasis comes from
+ * Inter's italic, never from colour.
+ */
+:root {
+  --paper: #ffffff;
+  --mist: #fbfbfb;
+  --surface: #ffffff;
+  --ink: #000000;
+  --body: #364153;
+  --graphite: #6a7282;
+  --faint: #99a1af;
+  --rule: #e9e9ea;
+  --night: #070707;
+  --panel: #0a0a0a;
+  --panel-rule: #1f1f1f;
+  --accent: #000000;
+  --accent-strong: #1e2939;
+  --accent-soft: #f3f4f6;
+  --on-accent: #ffffff;
+  --danger: #c10007;
+  --success: #008236;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-graphite: var(--graphite);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-night: var(--night);
+  --color-panel: var(--panel);
+  --color-panel-rule: var(--panel-rule);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --radius-4xl: 2rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---- Hero entrance: one orchestrated sequence on load. ---- */
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    animation: none;
+  }
+}
