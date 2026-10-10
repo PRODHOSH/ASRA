@@ -37,29 +37,45 @@ TBD. The approach the team is taking, at a high level. Note the main alternative
 
 ## Architecture
 
-TBD. Add a diagram once the design settles (an image in `docs/` or a Mermaid diagram works well). Describe the main components and how data moves between them.
+A React frontend talks to a FastAPI gateway, which routes requests to four services (Discovery, Analysis, Experiment, Critic). The services share a Research Memory layer (PostgreSQL + pgvector, object storage, knowledge graph).
 
-More detail: [`docs/architecture.md`](docs/architecture.md)
+More detail and diagrams: [`docs/architecture.md`](docs/architecture.md)
+
 
 ## Key Features
 
-- TBD
-- TBD
-- TBD
+- Discovery: query planning and multi-source paper search (Semantic Scholar, arXiv, Crossref)
+- Analysis: PDF/text extraction, RAG evidence retrieval, literature synthesis, research gap detection
+- Experiment: hypothesis-driven experiments run safely in a Docker sandbox
+- Critic: two-stage validation of hypotheses and results, with revise/accept loops
+
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| TBD | TBD |
+| Frontend | React / Next.js |
+| Backend | Python, FastAPI |
+| LLM | Llama 3 |
+| Agent framework | CrewAI |
+| Academic APIs | Semantic Scholar, arXiv, Crossref |
+| Document parsing | PyMuPDF, Docling |
+| RAG / Vector DB | Embeddings + pgvector |
+| Experiment sandbox | Docker |
+| Database | PostgreSQL |
+| Analysis | NumPy, Pandas, Matplotlib |
+| Storage / Auth | Supabase Storage, Supabase Auth |
+| Deployment | AWS / Vercel |
+
 
 ## Repository Structure
 
 ```
 .
 ├── .github/          # Issue templates, PR template, CI workflow, CODEOWNERS
+├── frontend/         # Next.js web app
+├── backend/          # Python FastAPI services
 ├── docs/             # Architecture, decisions, weekly updates, review material
-├── src/              # Source code
 ├── tests/            # Automated tests
 ├── CONTRIBUTING.md   # How to contribute
 ├── SECURITY.md       # Secrets and security reporting
@@ -72,14 +88,19 @@ Update this tree as the project grows. Add folders such as `experiments/`, `eval
 
 ### Prerequisites
 
-- TBD (language runtime, package manager, GPU/API access, etc.)
+- Node.js 22+ (frontend)
+- Python 3.12+ (backend, coming soon)
 
 ### Installation
 
 ```bash
-git clone https://github.com/MIC-AIML-Build-Cycle-2026-27/ASRA.git
-cd ASRA
-# TBD: install dependencies
+git clone <repo-url>
+cd asra-aiml
+
+# Frontend
+cd frontend
+npm install
+npm run dev
 ```
 
 Copy `.env.example` to `.env` and fill in your own values if the project needs API keys or other configuration. Never commit `.env`.

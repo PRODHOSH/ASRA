@@ -33,9 +33,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PYTHON_DIR: "."
+  PYTHON_DIR: "backend"
   PYTHON_VERSION: "3.12"
-  NODE_DIR: "."
+  NODE_DIR: "frontend"
   NODE_VERSION: "22"
 
 jobs:
