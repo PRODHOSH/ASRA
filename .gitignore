@@ -107,4 +107,7 @@ logs/
 .agents/
 .claude/
 skills-lock.json
-config.bat
+
+# env files
+.env*
+!.env.example
